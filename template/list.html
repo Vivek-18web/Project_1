@@ -1,0 +1,63 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal</title>
+    <link rel="stylesheet" href="{%static 'css/styles.css'%}">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <h1>Job Portal</h1>
+        </div>
+        <nav>
+
+            <ul>
+
+                <li><a href="/hrdash">Home</a></li>
+                <li><a href="/applylist?company={{request.session.company}}">Application</a></li>
+                <li><a href="/hrlogout">Logout</a></li>
+                 <li><a >{{request.session.company}}</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Section (Job Listings) -->
+    <main>
+        <section id="home" class="hero">
+            <h2>Find Your Post Job</h2>
+
+        </section>
+
+        <h2>Job Listings</h2>
+        <section id="jobs" class="job-listings">
+           {%for i in data%}
+            <div class="job-item">
+                <h3>{{i.role}}</h3>
+                <p>Company: {{i.company}}</p>
+                <p>Location: {{i.location}}</p>
+                <p>Skills:{{i.learn}}</p>
+                <p>vacancy:{{i.vac}}</p>
+                <a href="delete?id={{i.id}}" class="btn btn-secondary " role="button" aria-disabled="true">Delete</a>
+
+            </div>
+            {%endfor%}
+        </section>
+
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer id="contact">
+        <p>Contact us: info@jobportal.com</p>
+        <p>&copy; 2024 Job Portal. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal</title>
+    <link rel="stylesheet" href="{%static 'css/styles.css'%}">
+    <style>
+        .container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    margin-left:28%;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Form Group Styles */
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea,
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333;
+}
+
+textarea {
+    resize: vertical;
+    height: 120px;
+}
+
+/* Submit Button Styles */
+.submit-btn {
+    background-color: blue;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background-color: #45a049;
+}
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <h1>Job Portal</h1>
+        </div>
+        <nav>
+            <ul>
+                 <li><a href="/applylist?company={{request.session.company}}">Application</a></li>
+                <li><a href="/list?company={{request.session.company}}">Post Job </a></li>
+                <li><a href="/hrlogout">logout</a></li>
+                <li><a>{{request.session.company}}</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <!-- Main Section (Job Listings) -->
+    <main>
+
+
+          {%csrf_token%}
+
+            <div class="container-fluid">
+        <h1>Job Application Form</h1>
+
+
+
+
+        <form action="/addjob" method="POST" enctype="multipart/form-data">
+
+            {%csrf_token%}
+
+
+             <div class="form-group">
+                <label for="Role">Role</label>
+                <input type="text" id="Role" name="role" placeholder="Enter  Employee Role"  required  >
+            </div>
+
+            <div class="form-group">
+                <label for="company">Company Name</label>
+                <input type="text" id="company" name="company" required placeholder="Enter Company name">
+            </div>
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location" required placeholder="Enter location">
+            </div>
+            <div class="form-group">
+                <label for="learn">Skills</label>
+                <input type="tel" id="learn" name="learn" required placeholder="Enter Skills">
+            </div>
+
+             <div class="form-group">
+                <label for="vac">Qualification</label>
+                <input type="tel" id="vac" name="vac" required placeholder="Enter Vacancy">
+            </div>
+
+
+            <div class="form-group">
+                <button type="submit" class="submit-btn">Submit Application</button>
+            </div>
+
+        </form>
+
+
+    </div>
+
+
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer id="contact">
+        <p>Contact us: info@jobportal.com</p>
+        <p>&copy; 2024 Job Portal. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

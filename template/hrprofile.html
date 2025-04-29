@@ -1,0 +1,142 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal</title>
+    <link rel="stylesheet" href="{%static 'css/styles.css'%}">
+    <style>
+        .container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+button.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: blue;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button.submit-btn:hover {
+    background-color: #218838;
+}
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo" >
+            <h1>Job Portal</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/home" >Home</a></li>
+                <li><a href="/hrlogout">logout</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <!-- Main Section (Job Listings) -->
+    <main>
+
+
+
+        <div class="row">
+<div class="col-sm-4"></div>
+
+            <div class="col-sm-4">
+
+
+        {%for i in data%}
+
+  <div class="container-fluid">
+        <h2>Update Profile</h2>
+        <form action="/hrupdate" method="POST">
+            {%csrf_token%}
+
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" value="{{i.name}}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="{{i.email}}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="skills">company:</label>
+                <input type="text" id="skills" name="company" value="{{i.company}}"  required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="text" id="password" name="password" value="{{i.password}}" required>
+            </div>
+
+            <button type="submit" class="submit-btn">Update</button>
+        </form>
+    </div>
+
+         {%endfor%}
+
+            </div>
+<div class="col-sm-4"></div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer id="contact">
+        <p>Contact us: info@jobportal.com</p>
+        <p>&copy; 2024 Job Portal. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
